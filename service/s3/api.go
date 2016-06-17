@@ -4208,6 +4208,9 @@ type GetObjectInput struct {
 
 	// VersionId used to reference a specific version of the object.
 	VersionId *string `location:"querystring" locationName:"versionId" type:"string"`
+
+	// Added to allow the UnikHubClient to specify a password when downloading an image
+	Password *string `location:"header" locationName:"X-Amz-Meta-Unik-Password" type:"string"`
 }
 
 // String returns the string representation

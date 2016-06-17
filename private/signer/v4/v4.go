@@ -9,15 +9,16 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/djannot/aws-sdk-go/aws"
-	"github.com/djannot/aws-sdk-go/aws/credentials"
-	"github.com/djannot/aws-sdk-go/aws/request"
-	"github.com/djannot/aws-sdk-go/private/protocol/rest"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/private/protocol/rest"
 )
 
 const (
@@ -122,7 +123,6 @@ type signer struct {
 // Signing is skipped if the credentials is the credentials.AnonymousCredentials
 // object.
 func Sign(req *request.Request) {
-	fmt.Println(req)
 	// If the request does not need to be signed ignore the signing of the
 	// request if the AnonymousCredentials object is used.
 	if req.Config.Credentials == credentials.AnonymousCredentials {
@@ -185,6 +185,15 @@ func (v4 *signer) sign() error {
 	v4.CredValues, err = v4.Credentials.Get()
 	if err != nil {
 		return err
+	}
+
+	s3AuthProxyUrl := os.Getenv("S3_AUTH_PROXY_URL")
+	// If the s3 request concerns the UnikHub
+	if s3AuthProxyUrl != "" {
+		err := v4.validateRequest(s3AuthProxyUrl)
+		if err != nil {
+				return err
+		}
 	}
 
 	if v4.isPresign {
@@ -377,13 +386,23 @@ func (v4 *signer) buildStringToSign() {
 }
 
 func (v4 *signer) buildSignature() {
-	secret := v4.CredValues.SecretAccessKey
-	date := makeHmac([]byte("AWS4"+secret), []byte(v4.formattedShortTime))
-	region := makeHmac(date, []byte(v4.Region))
-	service := makeHmac(region, []byte(v4.ServiceName))
-	credentials := makeHmac(service, []byte("aws4_request"))
-	signature := makeHmac(credentials, []byte(v4.stringToSign))
-	v4.signature = hex.EncodeToString(signature)
+	s3AuthProxyUrl := os.Getenv("S3_AUTH_PROXY_URL")
+	// If the s3 request concerns the UnikHub
+	if s3AuthProxyUrl != "" {
+		err := v4.getSignature(s3AuthProxyUrl)
+		if err != nil {
+			fmt.Println("error:", err)
+			return
+		}
+	} else {
+		secret := v4.CredValues.SecretAccessKey
+		date := makeHmac([]byte("AWS4"+secret), []byte(v4.formattedShortTime))
+		region := makeHmac(date, []byte(v4.Region))
+		service := makeHmac(region, []byte(v4.ServiceName))
+		credentials := makeHmac(service, []byte("aws4_request"))
+		signature := makeHmac(credentials, []byte(v4.stringToSign))
+		v4.signature = hex.EncodeToString(signature)
+	}
 }
 
 func (v4 *signer) bodyDigest() string {
