@@ -6,10 +6,10 @@ package simpledb
 import (
 	"fmt"
 
-	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/private/protocol"
-	"github.com/aws/aws-sdk-go/private/protocol/query"
+	"github.com/djannot/aws-sdk-go/aws/awsutil"
+	"github.com/djannot/aws-sdk-go/aws/request"
+	"github.com/djannot/aws-sdk-go/private/protocol"
+	"github.com/djannot/aws-sdk-go/private/protocol/query"
 )
 
 const opBatchDeleteAttributes = "BatchDeleteAttributes"

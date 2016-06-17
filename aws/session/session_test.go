@@ -6,8 +6,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/djannot/aws-sdk-go/aws"
+	"github.com/djannot/aws-sdk-go/aws/session"
 )
 
 func TestNewDefaultSession(t *testing.T) {

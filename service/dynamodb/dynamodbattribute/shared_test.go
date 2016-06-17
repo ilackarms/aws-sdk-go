@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/djannot/aws-sdk-go/aws"
+	"github.com/djannot/aws-sdk-go/service/dynamodb"
 	"github.com/stretchr/testify/assert"
 )
 

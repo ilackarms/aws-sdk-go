@@ -6,10 +6,10 @@ package kms
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/private/protocol"
-	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+	"github.com/djannot/aws-sdk-go/aws/awsutil"
+	"github.com/djannot/aws-sdk-go/aws/request"
+	"github.com/djannot/aws-sdk-go/private/protocol"
+	"github.com/djannot/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opCancelKeyDeletion = "CancelKeyDeletion"

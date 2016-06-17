@@ -4,8 +4,8 @@
 package applicationautoscalingiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/service/applicationautoscaling"
+	"github.com/djannot/aws-sdk-go/aws/request"
+	"github.com/djannot/aws-sdk-go/service/applicationautoscaling"
 )
 
 // ApplicationAutoScalingAPI is the interface type for applicationautoscaling.ApplicationAutoScaling.

@@ -4,8 +4,8 @@
 package acmiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/service/acm"
+	"github.com/djannot/aws-sdk-go/aws/request"
+	"github.com/djannot/aws-sdk-go/service/acm"
 )
 
 // ACMAPI is the interface type for acm.ACM.

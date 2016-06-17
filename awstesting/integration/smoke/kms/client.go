@@ -2,8 +2,8 @@
 package kms
 
 import (
-	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
-	"github.com/aws/aws-sdk-go/service/kms"
+	"github.com/djannot/aws-sdk-go/awstesting/integration/smoke"
+	"github.com/djannot/aws-sdk-go/service/kms"
 	. "github.com/lsegal/gucumber"
 )
 

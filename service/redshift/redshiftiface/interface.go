@@ -4,8 +4,8 @@
 package redshiftiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/service/redshift"
+	"github.com/djannot/aws-sdk-go/aws/request"
+	"github.com/djannot/aws-sdk-go/service/redshift"
 )
 
 // RedshiftAPI is the interface type for redshift.Redshift.

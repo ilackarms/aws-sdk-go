@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/djannot/aws-sdk-go/aws/awsutil"
+	"github.com/djannot/aws-sdk-go/aws/request"
 )
 
 const opConnectDirectory = "ConnectDirectory"

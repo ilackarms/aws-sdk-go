@@ -7,10 +7,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/dynamodb"
-	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
+	"github.com/djannot/aws-sdk-go/aws"
+	"github.com/djannot/aws-sdk-go/aws/session"
+	"github.com/djannot/aws-sdk-go/service/dynamodb"
+	"github.com/djannot/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
 // benchmarkLogger handles all benchmark logging

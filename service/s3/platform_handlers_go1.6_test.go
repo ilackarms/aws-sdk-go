@@ -6,9 +6,9 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/awstesting/unit"
-	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/djannot/aws-sdk-go/aws"
+	"github.com/djannot/aws-sdk-go/awstesting/unit"
+	"github.com/djannot/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
 )
 

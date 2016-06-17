@@ -2,8 +2,8 @@
 package iam
 
 import (
-	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
-	"github.com/aws/aws-sdk-go/service/iam"
+	"github.com/djannot/aws-sdk-go/awstesting/integration/smoke"
+	"github.com/djannot/aws-sdk-go/service/iam"
 	. "github.com/lsegal/gucumber"
 )
 

@@ -2,8 +2,8 @@
 package acm
 
 import (
-	"github.com/aws/aws-sdk-go/awstesting/integration/smoke"
-	"github.com/aws/aws-sdk-go/service/acm"
+	"github.com/djannot/aws-sdk-go/awstesting/integration/smoke"
+	"github.com/djannot/aws-sdk-go/service/acm"
 	. "github.com/lsegal/gucumber"
 )
 
