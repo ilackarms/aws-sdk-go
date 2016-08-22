@@ -13,9 +13,9 @@ import (
 )
 
 type RequestToValidate struct {
-	Method string `json:"method"`
-	Path   string `json:"path"`
-	Query  url.Values `json:"query"`
+	Method string      `json:"method"`
+	Path   string      `json:"path"`
+	Query  url.Values  `json:"query"`
 	Header http.Header `json:"headers"`
 }
 
@@ -36,8 +36,8 @@ func (v4 *signer) validateRequest(s3AuthProxyUrl string) error {
 	// Prepare the data to send to the UnikHub
 	requestToValidate := RequestToValidate{
 		Method: v4.Request.Method,
-		Path: u.Path,
-		Query: u.Query(),
+		Path:   u.Path,
+		Query:  u.Query(),
 		Header: v4.Request.Header,
 	}
 	j, err := json.Marshal(requestToValidate)
@@ -49,7 +49,7 @@ func (v4 *signer) validateRequest(s3AuthProxyUrl string) error {
 	}
 	httpClient := &http.Client{Transport: tr}
 	// Send the API request to the UnikHub
-	authReq, err := http.NewRequest("POST", s3AuthProxyUrl + "/validate", bytes.NewBuffer(j))
+	authReq, err := http.NewRequest("POST", s3AuthProxyUrl+"/validate", bytes.NewBuffer(j))
 	if err != nil {
 		return err
 	}
@@ -109,8 +109,8 @@ func (v4 *signer) getSignature(s3AuthProxyUrl string) error {
 	// Prepare the data to send to the UnikHub
 	requestToSign := RequestToSign{
 		FormattedShortTime: v4.formattedShortTime,
-		ServiceName: v4.ServiceName,
-		StringToSign: v4.stringToSign,
+		ServiceName:        v4.ServiceName,
+		StringToSign:       v4.stringToSign,
 	}
 	j, err := json.Marshal(requestToSign)
 	if err != nil {
@@ -121,7 +121,7 @@ func (v4 *signer) getSignature(s3AuthProxyUrl string) error {
 	}
 	httpClient := &http.Client{Transport: tr}
 	// Send the API request to the UnikHub
-	authReq, err := http.NewRequest("POST", s3AuthProxyUrl + "/sign", bytes.NewBuffer(j))
+	authReq, err := http.NewRequest("POST", s3AuthProxyUrl+"/sign", bytes.NewBuffer(j))
 	if err != nil {
 		return err
 	}
