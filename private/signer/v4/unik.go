@@ -79,6 +79,10 @@ func (v4 *signer) validateRequest(s3AuthProxyUrl string) error {
 			err = errors.New("Can't replace the Aws Bucket in the request")
 			return err
 		}
+		v4.pass = v4.Request.Header.Get("X-Amz-Meta-Unik-Password")
+
+		// Remove the X-Amz-Meta-Unik-Password and X-Amz-Meta-Unik-Email headers because they shouldn't be stored with the /bucket/user/image/version object
+		v4.Request.Header.Del("X-Amz-Meta-Unik-Password")
 	} else {
 		err = errors.New(validationResponse.Message)
 		return err
@@ -93,10 +97,7 @@ func (v4 *signer) getSignature(s3AuthProxyUrl string) error {
 	if err != nil {
 		return err
 	}
-	pass := v4.Request.Header.Get("X-Amz-Meta-Unik-Password")
-
-	// Remove the X-Amz-Meta-Unik-Password and X-Amz-Meta-Unik-Email headers because they shouldn't be stored with the /bucket/user/image/version object
-	v4.Request.Header.Del("X-Amz-Meta-Unik-Password")
+	pass := v4.pass
 
 	// Prepare the data to send to the UnikHub
 	requestToValidate := RequestToValidate{
